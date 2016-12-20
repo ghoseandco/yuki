@@ -194,12 +194,6 @@
 
             {/block:Photos}
 
-            {Block:PermalinkPage}
-                {block:Caption}
-                    <div class="caption">{Caption}</div>
-                {/block:Caption}
-            {/Block:PermalinkPage}
-
         {/block:Photoset}
 
 
@@ -320,6 +314,13 @@
 
             {block:Date}
                 <section class="post fade single navigation">
+                {block:Photoset}  
+                          
+                {block:Caption}
+                    <div class="caption">{Caption}</div>
+                {/block:Caption}
+
+        {/block:Photoset} 
                     <header>Posted</header>
                     {Month} {DayOfMonth}, {Year}
                 </section>
