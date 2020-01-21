@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 
 <!--
-
-                                  88         88
-                                  88         ""
-                                  88
-        8b       d8  88       88  88   ,d8   88
-        `8b     d8'  88       88  88 ,a8"    88
-         `8b   d8'   88       88  8888[      88
-          `8b,d8'    "8a,   ,a88  88`"Yba,   88
-            Y88'      `"YbbdP'Y8  88   `Y8a  88
-            d8'
-           d8'     0.2.14
-
+          Rarh flavoured 
           Yuki by Cory Gibbons
           github.com/corygibbons/yuki
-
-          hello@corygibbons.com
-          corygibbons.com
           @corygibbons
 
 -->
 
 <html>
     <head>
-        <title>{Title}</title>
+        <title>{Title}{block:IndexPage} - {Description}{/block:IndexPage} {block:PermalinkPage}{block:PostSummary} - {PostSummary}{/block:PostSummary}{/block:PermalinkPage} {block:TagPage} - {Tag}{/block:TagPage}</title>
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
@@ -32,7 +18,19 @@
           <meta name="description" content="{MetaDescription}" />
         {/block:Description}
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+{block:PermalinkPage}
+<meta property="og:site_name" content="{Title}"/>
+{block:Posts}
+<meta property="og:url" content="{Permalink}"/>
+<meta property="og:title" content="{block:PostSummary}{PlaintextPostSummary}{/block:PostSummary}"/>
+<meta property="og:description" content="{MetaDescription}"/>
+{block:Photo}<meta property="og:image" content="{PhotoURL-HighRes}"/>{/block:Photo}
+<meta property="og:type" content="article"/>
+{block:Date}<meta property="article:published_time" content="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}T{24HourWithZero}:{Minutes}:{Seconds}+00:00" />{/block:Date}
+{block:HasTags}{block:Tags}<meta property="article:tag" content="{Tag}"/>
+{/block:Tags}{/block:HasTags}
+{/block:Posts}
+{/block:PermalinkPage}
         <!-- jQuery -->
         <script src="https://static.tumblr.com/j9zrgpw/Pikmg130a/jquery-1.7.1.min.js"></script>
 
@@ -45,7 +43,8 @@
 
         <!-- Stylesheet -->
         <link rel="stylesheet" type="text/css" href="https://static.tumblr.com/j9zrgpw/MFon38qg7/style.css"/>
-        <link rel="stylesheet" type="text/css" href="https://static.tumblr.com/j9zrgpw/ZyFn3civd/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet">
+
 
         <!-- Defaults -->
         <meta name="color:Post Hover" content="#fbfbfb"/>
@@ -59,8 +58,125 @@
         .post-background { background: {color:Post Hover}; }
         {block:IndexPage} {block:IfNotShowFullPhotoset}.post .photoset { display: none; } .post .photoset:first-child { display: block; }{/block:IfNotShowFullPhotoset}{/block:IndexPage}
         {CustomCSS}
-        </style>
+        body {
+            font-family: 'Roboto', Helvetica,Arial, sans-serif;
+            font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.7;
+    color: rgba(94, 90, 82, 0.75);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, .text h1, .text h2, .text h3, .link .link-title { font-weight: normal; font-size: 13px;     color: #3f3f3f; }
+        strong, b  
+        { 
+            font-weight: normal; 
+            font-size: 11px;     
+            color: #3f3f3f; 
+            text-transform: uppercase; 
+            clear: both;
+            display: block;
+        }
+        em, i {
+            clear: both;
+            display: block;
+            font-style: normal;
+            font-size: 11px;
+        }
+  ::selection { background: transparent; color: #111111; }
+        .single img {
+                height: auto;
+            }
+        .wide {
+            width: 100%;
+        }
+          ol {
+	  -webkit-padding-start: 29px;
+	  width: 100%;
+	  list-style-position: outside;
+	  list-style-type: none;
+	  counter-reset: li;
+	  text-indent: -15px;
+  }
 
+	ol li:before {
+	  	counter-increment: li;
+	  	content: counter(li, decimal-leading-zero);
+		margin-right: 0.6em;
+		width: 6px;
+		display: inline-block;
+	}
+
+	ol li::first-line { margin-left: -10px; }
+ul {
+    list-style-type: none;
+    padding: 0;
+    line-height: 1pc;
+    max-width: 100%;
+    display: table;
+    overflow: hidden;
+}
+ul li {
+    margin: 0.5pc;
+    padding: 0.5pc;
+    width: calc(50% - 35px);
+    display: block;
+    float: left;
+    border-left: 1px solid #666;
+}
+blockquote {
+    display: block;
+    text-decoration: none;
+    padding-left: 1pc;
+    border-left: 1px solid;
+}
+@media screen and (min-width: 1162px) {
+    p {
+        position: relative;
+    }
+blockquote {
+    position: absolute;
+    /*top: 0;*/
+    left: 100%;
+    margin-left: 1pc;
+    min-width: fit-content;
+}
+}
+aside {
+    background: #eaeaea;
+    margin: 1pc 0;
+    padding: 1pc;
+}
+.text .text-body a {
+    text-decoration: none;
+    color: #3f3f3f;
+}
+.text img {
+    padding: 2pc 0;
+}
+.gdpr {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 10px;
+    width: 1pc;
+    height: 0.3pc;
+    text-align: left;
+    padding: 0.5pc;
+    background: rgba(0, 0, 0, 0.1);
+    line-height: 0.8pc;
+    overflow: hidden;
+}
+.gdpr:hover {
+    width: 10pc;
+    height: 0.3pc;
+}
+        </style>
+<meta name="image:Banner1" content="{HeaderImage}"/>
+<meta name="text:Text1" content=""/>
+<meta name="text:Link1" content=""/>
     </head>
 
 <body>
@@ -94,7 +210,16 @@
 
 
     <section id="posts">
-
+    {block:IndexPage}
+    {block:IfLink1}
+        <section class="post fade single">
+        <a href="{text:Link1}" >
+        {block:IfHeaderImage}<img class="opt" srco="{image:Banner1}" width="260" height="200" />{/block:IfHeaderImage}
+        {block:IfText1}{text:Text1}{/block:IfText1}
+        </a>
+        </section>
+    {/block:IfLink1}
+    {/block:IndexPage}
     {block:Posts}
 
         {block:Post1}
@@ -103,10 +228,9 @@
             {/block:IndexPage}
 
             {block:PermalinkPage}
-                <section class="post fade double">
+                <section class="post fade double {TagsAsClasses}">
             {/block:PermalinkPage}
         {/block:Post1}
-
 
 
         {block:Post2}</section><section class="post fade single">{/block:Post2}
@@ -130,7 +254,7 @@
 
         {block:Text}
         <!-- Text Post -->
-            <div class="text">
+            <div class="text {TagsAsClasses}">
 
                 {Block:PermalinkPage}
                     <hr>
@@ -141,7 +265,7 @@
                 {/block:Title}
 
                 <div class="text-body">
-                    {Body}
+                    {block:IndexPage}<a href="{Permalink}">{/block:IndexPage}{Body}{block:IndexPage}</a>{/block:IndexPage}
                 </div>
 
             </div>
@@ -155,13 +279,13 @@
         <!-- Photo post -->
 
             {block:IndexPage}
-                <div class="post-background">
-                    <a href="{Permalink}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/></a>
+                <div class="post-background {TagsAsClasses}">
+                    <a href="{Permalink}"><img class="opt" srco="{PhotoURL-250}" alt="{PhotoAlt}" width="{PhotoWidth-250}" height="{PhotoHeight-250}" />{PhotoAlt}</a>
                 </div>
             {/block:IndexPage}
 
             {block:PermalinkPage}
-                <div class="post-background">
+                <div class="post-background {TagsAsClasses}">
                     <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
                 </div>
                 {block:Caption}
@@ -182,17 +306,18 @@
 
                 {Block:IndexPage}
                     <div class="photoset post-background">
-                        <a href="{Permalink}"><img src="{PhotoURL-500}" width="{PhotoWidth-500}"height="{PhotoHeight-500}" />{block:Caption}{Caption}{/block:Caption}</a>
+                        <a href="{Permalink}"><img class="opt" srco="{PhotoURL-500}" width="{PhotoWidth-500}"height="{PhotoHeight-500}" />{block:Caption}{Caption}{/block:Caption}</a>
                     </div>
                 {/Block:IndexPage}
-
+             {/block:Photos}
+             
                 {Block:PermalinkPage}
                     <div class="photoset post-background">
-                        <img src="{PhotoURL-HighRes}" width="{PhotoWidth-HighRes}"height="{PhotoHeight-HighRes}" />
+                    {Photoset-500}
                     </div>
                 {/Block:PermalinkPage}
 
-            {/block:Photos}
+            
 
         {/block:Photoset}
 
@@ -248,7 +373,7 @@
         {block:Quote}
         <!-- Quote post -->
 
-            <div class="quote">
+            <div class="quote {TagsAsClasses}">
                 "{Quote}"
 
                 {block:Source}
@@ -295,8 +420,8 @@
         {block:Link}
         <!-- Link post -->
 
-            <div class="link">
-                <a href="{URL}" class="link-title" {Target}>{Name} <i class="fa fa-external-link fa-fw"></i></a>
+            <div class="link {TagsAsClasses}">
+                <a href="{URL}" class="link-title" {Target}>{Name} <i class="far fa-list-alt"></i></a>
 
                 {block:Description}
                     <div class="description">{Description}</div>
@@ -317,7 +442,7 @@
                 {block:Photoset}  
                           
                 {block:Caption}
-                    <div class="caption">{Caption}</div>
+                    <div class="caption {TagsAsClasses}">{Caption}</div>
                 {/block:Caption}
 
         {/block:Photoset} 
@@ -364,8 +489,6 @@
                 {/block:PostNotes}
             {/block:IfNotes}
 
-
-
         {/block:PermalinkPage}
 
 
@@ -400,16 +523,28 @@
 {block:IndexPage}
     <footer class="primary-footer fade">
         <a href="#" class="load-more"><span class="load-more-entries">+</span></a>
+
     </footer>
 {/block:IndexPage}
 
+        <div class="gdpr"><i class="fas fa-cookie"></i> <a href="/gdpr">You agree to have these cookies.</a></div>
 
+<script src="https://use.fontawesome.com/releases/v5.11.1/js/all.js" data-auto-replace-svg="nest"></script>
 <script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
 <!-- jQuery Masonry -->
 <script src="https://static.tumblr.com/j9zrgpw/M6qmg12yb/jquery.masonry.min.js"></script>
 <script src="https://static.tumblr.com/wgijwsy/u2vm2hxv6/jquery.infinitescroll.min.js"></script>
 
 <script>
+$(document).ready(function() {
+        $("img.opt").each(function() {
+          var link = $(this).attr("srco");
+          var newLink = link.replace("https://", "https://i0.wp.com/").concat("?w=",$(this).attr("width"),"&quality=50&strip=all");
+          $(this).attr("src", function() {
+            return newLink
+        });
+     });
+  });
 (function () {
 
     function resizeVideo(){
@@ -530,6 +665,5 @@
 
 })();
 </script>
-
     </body>
 </html>
