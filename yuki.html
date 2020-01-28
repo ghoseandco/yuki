@@ -280,7 +280,7 @@ aside {
 
             {block:IndexPage}
                 <div class="post-background {TagsAsClasses}">
-                    <a href="{Permalink}"><img class="opt" srco="{PhotoURL-250}" alt="{PhotoAlt}" width="{PhotoWidth-250}" height="{PhotoHeight-250}" />{PhotoAlt}</a>
+                    <a href="{Permalink}"><img class="opt" src="{PhotoURL-250}" alt="{PhotoAlt}" width="{PhotoWidth-250}" height="{PhotoHeight-250}" />{PhotoAlt}</a>
                 </div>
             {/block:IndexPage}
 
@@ -306,18 +306,18 @@ aside {
 
                 {Block:IndexPage}
                     <div class="photoset post-background">
-                        <a href="{Permalink}"><img class="opt" srco="{PhotoURL-500}" width="{PhotoWidth-500}"height="{PhotoHeight-500}" />{block:Caption}{Caption}{/block:Caption}</a>
+                        <a href="{Permalink}"><img class="opt" src="{PhotoURL-500}" width="{PhotoWidth-500}"height="{PhotoHeight-500}" />{block:Caption}{Caption}{/block:Caption}</a>
                     </div>
                 {/Block:IndexPage}
-             {/block:Photos}
+            
              
                 {Block:PermalinkPage}
                     <div class="photoset post-background">
-                    {Photoset-500}
+                    <img class="opt" src="{PhotoURL-500}" width="{PhotoWidth-500}"height="{PhotoHeight-500}" />{block:Caption}{Caption}{/block:Caption}
                     </div>
                 {/Block:PermalinkPage}
 
-            
+             {/block:Photos}
 
         {/block:Photoset}
 
@@ -536,15 +536,6 @@ aside {
 <script src="https://static.tumblr.com/wgijwsy/u2vm2hxv6/jquery.infinitescroll.min.js"></script>
 
 <script>
-$(document).ready(function() {
-        $("img.opt").each(function() {
-          var link = $(this).attr("srco");
-          var newLink = link.replace("https://", "https://i0.wp.com/").concat("?w=",$(this).attr("width"),"&quality=50&strip=all");
-          $(this).attr("src", function() {
-            return newLink
-        });
-     });
-  });
 (function () {
 
     function resizeVideo(){
